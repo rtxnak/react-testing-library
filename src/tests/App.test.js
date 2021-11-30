@@ -45,4 +45,14 @@ describe('1 - Teste o componente <App.js />', () => {
       expect(history.location.pathname).toBe('/favorites');
     },
   );
+
+  it(
+    '(E)-Teste se redireciona para pag NotFound ao entrar em URL desconhecida.', () => {
+      const { history } = renderWithRouter(<App />);
+      history.push('/blankPageTest');
+
+      const pageNotFound = screen.getByText('Page requested not found');
+      expect(pageNotFound).toBeDefined();
+    },
+  );
 });
