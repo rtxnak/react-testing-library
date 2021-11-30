@@ -25,4 +25,14 @@ describe('1 - Teste o componente <App.js />', () => {
       expect(history.location.pathname).toBe('/');
     },
   );
+
+  it(
+    '(C)-Test se a app.  é redirecionada para URL /about ao clicar no link About', () => {
+      const { history } = renderWithRouter(<App />);
+      const about = screen.getByRole('link', { name: 'About' });
+
+      userEvent.click(about);
+      expect(history.location.pathname).toBe('/about');
+    },
+  );
 });
