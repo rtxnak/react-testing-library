@@ -40,4 +40,32 @@ describe('Teste o componente <Pokedex.js />', () => {
     const pokemonOnScreen = screen.getAllByTestId('pokemon-name');
     expect(pokemonOnScreen.length).toStrictEqual(1);
   });
+
+  it('(D)Teste se a Pokédex tem os botões de filtro', () => {
+    const pokemonTypes = [
+      'Electric',
+      'Fire',
+      'Bug',
+      'Poison',
+      'Psychic',
+      'Normal',
+      'Dragon',
+    ];
+
+    renderWithRouter(<App />);
+    pokemonTypes.forEach((type) => {
+      const pokemonTypeButton = screen.getByRole('button', { name: `${type}` });
+      expect(pokemonTypeButton).toBeDefined();
+    });
+
+    pokemonTypes.forEach((type) => {
+      const pokemonTypeButton = screen.getByRole('button', { name: `${type}` });
+      userEvent.click(pokemonTypeButton);
+      const typeOfPokemonOnScreen = screen.getAllByText(`${type}`);
+      expect(typeOfPokemonOnScreen).toBeDefined();
+    });
+
+    const allButton = screen.getByRole('button', { name: 'All' });
+    expect(allButton).toBeDefined();
+  });
 });
