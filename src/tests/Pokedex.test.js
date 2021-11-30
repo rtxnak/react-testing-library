@@ -34,4 +34,10 @@ describe('Teste o componente <Pokedex.js />', () => {
     userEvent.click(nextPokemonButton);
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
   });
+
+  it('(C)Teste se é mostrado apenas um Pokémon por vez.', () => {
+    renderWithRouter(<App />);
+    const pokemonOnScreen = screen.getAllByTestId('pokemon-name');
+    expect(pokemonOnScreen.length).toStrictEqual(1);
+  });
 });
