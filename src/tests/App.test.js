@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
@@ -14,4 +15,14 @@ describe('1 - Teste o componente <App.js />', () => {
     expect(about).toBeDefined();
     expect(favoritePokemons).toBeDefined();
   });
+
+  it(
+    '(B)-Test se a aplicação é redirecionada para URL / ao clicar no link Home,', () => {
+      const { history } = renderWithRouter(<App />);
+      const home = screen.getByRole('link', { name: 'Home' });
+
+      userEvent.click(home);
+      expect(history.location.pathname).toBe('/');
+    },
+  );
 });
