@@ -100,5 +100,18 @@ describe('Teste o componente <Pokedex.js />', () => {
     expect(screen.getByText('Dragonair')).toBeInTheDocument();
     userEvent.click(nextPokemonButton);
     expect(screen.getByText('Pikachu')).toBeInTheDocument();
+
+    const pokemonTypes = [
+      'Electric',
+      'Fire',
+      'Bug',
+      'Poison',
+      'Psychic',
+      'Normal',
+      'Dragon',
+    ];
+
+    const typesButton = screen.getAllByTestId('pokemon-type-button');
+    expect(typesButton.length).toEqual(pokemonTypes.length);
   });
 });
